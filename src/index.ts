@@ -1,5 +1,5 @@
 import type { Server } from "bun";
-import { pathToRegexp } from "path-to-regexp";
+import { match, pathToRegexp } from "path-to-regexp";
 import type { IHandler, IMiddleware, AddMethodProps } from "../types";
 
 export class App {
@@ -12,8 +12,8 @@ export class App {
   prefix = "";
 
   constructor({
-    port = Number(process.env.PORT) || 8080,
-    hostname = process.env.HOSTNAME || "localhost",
+    port = Number(process.env["PORT"]) || 8080,
+    hostname = process.env["HOSTNAME"] || "localhost",
     prefix = "",
   }: {
     port?: number;
@@ -67,23 +67,34 @@ export class App {
         }
 
         for await (const [path, _handler] of methodRoutes) {
+          // Create a regex from the path
           const regex = pathToRegexp(path);
+          // Match the regex with the pathname
           const matched = regex.exec(url.pathname);
+          // use match to get params
+          const matcher = match(path, { decode: decodeURIComponent });
+          // get params
+          const params = (matcher(url.pathname) as Record<string, any>)?.[
+            "params"
+          ];
 
+          // If matched, call the handler
           if (matched) {
-            console.log("regex :>> ", regex);
             try {
-              const res = await _handler(request, server);
+              const res = await _handler(request, server, params);
 
               return res;
             } catch (error) {
+              // If the error is a Response, return it
               if (error instanceof Response) {
                 return error;
               }
 
+              // Otherwise, return a 500 error
               return Response.json({ message: String(error) }, { status: 500 });
             }
           } else {
+            // If no match, continue to the next route
             continue;
           }
         }

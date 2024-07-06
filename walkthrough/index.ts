@@ -33,8 +33,8 @@ export class App implements IApp {
 
   // Constructor to set the port, hostname and prefix, but they're optional
   constructor({
-    port = Number(process.env.PORT) || 8080,
-    hostname = process.env.HOSTNAME || "localhost",
+    port = Number(process.env["PORT"]) || 8080,
+    hostname = process.env["HOSTNAME"] || "localhost",
     prefix = "",
   }: {
     port?: number;

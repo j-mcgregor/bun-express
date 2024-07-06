@@ -1,4 +1,8 @@
-export type IHandler = (req: Request, server: Server) => Promise<Response>;
+export type IHandler = (
+  req: Request,
+  server: Server,
+  params?: Record<string, any>
+) => Promise<Response>;
 
 export interface IMiddlewareResponse {
   ok: boolean;
