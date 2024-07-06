@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach, afterEach } from "bun:test";
 
-import { App, type IMiddlewareResponse } from "../app";
+import { App, type IMiddlewareResponse } from "..";
 
 import type { Server } from "bun";
 

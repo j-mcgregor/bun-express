@@ -1,6 +1,6 @@
 import { renderToReadableStream } from "react-dom/server";
 import path from "path";
-import { App } from "./app";
+import { App } from ".";
 import { Home } from "./templates/Home";
 
 const app = new App({

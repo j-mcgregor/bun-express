@@ -375,7 +375,7 @@ var require_dist = __commonJS((exports) => {
   exports.pathToRegexp = pathToRegexp;
 });
 
-// src/app.ts
+// src/index.ts
 var import_path_to_regexp = __toESM(require_dist(), 1);
 
 class App {

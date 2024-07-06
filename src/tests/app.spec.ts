@@ -9,7 +9,7 @@ import {
 } from "bun:test";
 import { $ } from "bun";
 
-import { App } from "../app";
+import { App } from "..";
 
 import type { Server } from "bun";
 
