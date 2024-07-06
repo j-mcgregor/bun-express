@@ -4,7 +4,7 @@
   "module": "index.ts",
   "main": "./dist/app.js",
   "types": "./src/types/index.d.ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "devDependencies": {
     "@types/bun": "latest",
     "@types/react": "^18.3.3",
@@ -25,5 +25,11 @@
   },
   "publishConfig": {
     "registry": "https://github.com/j-mcgregor/bun-express.git"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/app.js",
+      "import": "./src/app.ts"
+    }
   }
 }
