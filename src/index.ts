@@ -264,6 +264,7 @@ export class App {
     });
   }
 
+  // test comment
   printRoutes() {
     this.routes.forEach((routes, method) => {
       routes.forEach((_handler, route) => {
