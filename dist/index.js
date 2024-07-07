@@ -387,8 +387,8 @@ class App {
   middleware = new Map;
   prefix = "";
   constructor({
-    port = Number(process.env.PORT) || 8080,
-    hostname = process.env.HOSTNAME || "localhost",
+    port = Number(process.env["PORT"]) || 8080,
+    hostname = process.env["HOSTNAME"] || "localhost",
     prefix = ""
   } = {}) {
     this.routes.set("GET", new Map);
@@ -411,7 +411,7 @@ class App {
         if (!methodRoutes) {
           return Response.json({ message: "Method routes not found" }, { status: 404 });
         }
-        for await (const [name, middleware] of this.middleware) {
+        for await (const [_name, middleware] of this.middleware) {
           try {
             const response = await middleware(request, server);
             if (!response.ok) {
@@ -430,10 +430,11 @@ class App {
         for await (const [path, _handler] of methodRoutes) {
           const regex = import_path_to_regexp.pathToRegexp(path);
           const matched = regex.exec(url.pathname);
+          const matcher = import_path_to_regexp.match(path, { decode: decodeURIComponent });
+          const params = matcher(url.pathname)?.["params"];
           if (matched) {
-            console.log("regex :>> ", regex);
             try {
-              const res = await _handler(request, server);
+              const res = await _handler(request, server, params);
               return res;
             } catch (error) {
               if (error instanceof Response) {
@@ -463,7 +464,7 @@ class App {
           }
           ws.send("i'm just a silly timebot, i can only tell the time");
         },
-        close(ws) {
+        close(_ws) {
           console.log("connection closed");
         }
       }
@@ -495,7 +496,7 @@ class App {
           }
           ws.send("i'm just a silly timebot, i can only tell the time");
         },
-        close(ws) {
+        close(_ws) {
           console.log("connection closed");
         }
       }
@@ -545,7 +546,7 @@ class App {
       return;
     }
     if (path) {
-      this.routes.forEach((value, key) => {
+      this.routes.forEach((value) => {
         value.forEach((handler2, _path) => {
           if (path === _path) {
             if (this.prefix) {
@@ -565,7 +566,7 @@ class App {
   }
   printRoutes() {
     this.routes.forEach((routes, method) => {
-      routes.forEach((handler, route) => {
+      routes.forEach((_handler, route) => {
         console.log(`${method} ${route}`);
       });
     });

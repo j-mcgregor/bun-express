@@ -47,7 +47,7 @@ export class App {
           );
         }
 
-        for await (const [name, middleware] of this.middleware) {
+        for await (const [_name, middleware] of this.middleware) {
           try {
             const response = await middleware(request, server);
 
@@ -125,7 +125,7 @@ export class App {
 
           ws.send("i'm just a silly timebot, i can only tell the time");
         },
-        close(ws) {
+        close(_ws) {
           console.log("connection closed");
         },
       },
@@ -168,7 +168,7 @@ export class App {
 
           ws.send("i'm just a silly timebot, i can only tell the time");
         },
-        close(ws) {
+        close(_ws) {
           console.log("connection closed");
         },
       },
@@ -241,7 +241,7 @@ export class App {
       // if no method, apply the handler to all routes with the path
 
       // get the routes
-      this.routes.forEach((value, key) => {
+      this.routes.forEach((value) => {
         // get the routes
         value.forEach((handler, _path) => {
           // check if the path matches
@@ -266,7 +266,7 @@ export class App {
 
   printRoutes() {
     this.routes.forEach((routes, method) => {
-      routes.forEach((handler, route) => {
+      routes.forEach((_handler, route) => {
         console.log(`${method} ${route}`);
       });
     });
