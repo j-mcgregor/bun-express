@@ -7,7 +7,7 @@
   "module": "src/index.ts",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
