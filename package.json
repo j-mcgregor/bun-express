@@ -1,6 +1,9 @@
 {
   "name": "@j-mcgregor/bun-express",
-  "repository": "https://github.com/j-mcgregor/bun-express.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-mcgregor/bun-express.git"
+  },
   "module": "src/index.ts",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
