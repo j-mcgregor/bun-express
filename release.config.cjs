@@ -6,13 +6,7 @@ module.exports = {
     "@semantic-release/changelog",
     "@semantic-release/npm",
     "@semantic-release/git",
-    [
-      "@semantic-release/github",
-      {
-        successComment: false,
-        failTitle: false,
-      },
-    ],
+    "@semantic-release/github",
   ],
   preset: "angular",
   releaseRules: [
