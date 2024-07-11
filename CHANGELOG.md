@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/j-mcgregor/bun-express/compare/v1.4.0...v1.5.0) (2024-07-11)
+
+
+### Features
+
+* 🎸 semantic-release/github bumped ([80b3a5f](https://github.com/j-mcgregor/bun-express/commit/80b3a5feaf4fa24f92c92783de5f88bda740fe8a))
+
 # [1.4.0](https://github.com/j-mcgregor/bun-express/compare/v1.3.0...v1.4.0) (2024-07-11)
 
 
