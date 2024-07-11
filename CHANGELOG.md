@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/j-mcgregor/bun-express/compare/v1.1.0...v1.2.0) (2024-07-11)
+
+
+### Features
+
+* 🎸 bump ([3f8b1c6](https://github.com/j-mcgregor/bun-express/commit/3f8b1c647d5c840ba45cff98bba410851805eba4))
+
 # [1.1.0](https://github.com/j-mcgregor/bun-express/compare/v1.0.0...v1.1.0) (2024-07-11)
 
 
