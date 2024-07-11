@@ -27,21 +27,7 @@ module.exports = {
         },
       },
     ],
-    "@semantic-release/changelog",
-    [
-      "@semantic-release/npm",
-      {
-        npmPublish: true,
-      },
-    ],
-    "@semantic-release/git",
-    [
-      "@semantic-release/github",
-      {
-        successComment: false,
-        failTitle: false,
-      },
-    ],
+
     [
       "@semantic-release/release-notes-generator",
       {
@@ -64,41 +50,43 @@ module.exports = {
             {
               type: "docs",
               section: "Documentation",
-              hidden: false,
             },
             {
               type: "style",
               section: "Styles",
-              hidden: false,
             },
             {
               type: "chore",
               section: "Miscellaneous Chores",
-              hidden: false,
             },
             {
               type: "refactor",
               section: "Code Refactors",
-              hidden: false,
             },
             {
               type: "test",
               section: "Tests",
-              hidden: false,
             },
             {
               type: "ci",
               section: "CI/CD",
-              hidden: false,
             },
             {
               type: "breaking",
               section: "Breaking",
-              hidden: false,
             },
           ],
         },
       },
     ],
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/npm",
+      {
+        npmPublish: true,
+      },
+    ],
+    "@semantic-release/git",
+    "@semantic-release/github",
   ],
 };
