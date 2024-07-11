@@ -36,7 +36,8 @@
     "react-dom": "^18.3.1"
   },
   "publishConfig": {
-    "registry": "https://github.com/j-mcgregor/bun-express.git"
+    "registry": "https://npm.pkg.github.com",
+    "tag": "latest"
   },
   "exports": {
     ".": {
