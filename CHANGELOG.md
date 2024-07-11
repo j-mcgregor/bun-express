@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/j-mcgregor/bun-express/compare/v1.3.0...v1.4.0) (2024-07-11)
+
+
+### Features
+
+* 🎸 reset ([4b6005a](https://github.com/j-mcgregor/bun-express/commit/4b6005a7e48dc0e3da12fc8c28964ce15442d997))
+
 # [1.3.0](https://github.com/j-mcgregor/bun-express/compare/v1.2.0...v1.3.0) (2024-07-11)
 
 
