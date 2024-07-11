@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/j-mcgregor/bun-express/compare/v1.5.0...v1.6.0) (2024-07-11)
+
+
+### Features
+
+* 🎸 config ([608e9c9](https://github.com/j-mcgregor/bun-express/commit/608e9c948675f9fd809b2fc3473e0203bc51df95))
+
 # [1.5.0](https://github.com/j-mcgregor/bun-express/compare/v1.4.0...v1.5.0) (2024-07-11)
 
 
