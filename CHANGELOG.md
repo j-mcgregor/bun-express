@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/j-mcgregor/bun-express/compare/v1.6.0...v1.7.0) (2024-07-11)
+
+
+### Features
+
+* add new feature X ([fecd4b7](https://github.com/j-mcgregor/bun-express/commit/fecd4b7d755553bfaba6a4c6f60e4c37d8c3a3b8))
+
 # [1.6.0](https://github.com/j-mcgregor/bun-express/compare/v1.5.0...v1.6.0) (2024-07-11)
 
 

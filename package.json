@@ -1,6 +1,5 @@
 {
   "name": "@j-mcgregor/bun-express",
-  "version": "0.0.0-development",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -11,6 +10,7 @@
   "module": "src/index.ts",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "version": "1.7.0",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
