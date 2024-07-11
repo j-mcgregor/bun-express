@@ -1,5 +1,5 @@
 import type { Server } from "bun";
-import { pathToRegexp, match, type Match } from "path-to-regexp";
+import { pathToRegexp, match } from "path-to-regexp";
 
 export type IHandler = (
   req: Request,
