@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/j-mcgregor/bun-express/compare/v1.8.0...v1.9.0) (2024-07-12)
+
+
+### Features
+
+* update .npmrc to include NPM_TOKEN for authentication ([39da9d7](https://github.com/j-mcgregor/bun-express/commit/39da9d7676e8de7188c8860334bea3f3f96a433f))
+
 # [1.8.0](https://github.com/j-mcgregor/bun-express/compare/v1.7.0...v1.8.0) (2024-07-12)
 
 
