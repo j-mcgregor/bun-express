@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/j-mcgregor/bun-express/compare/v1.7.0...v1.8.0) (2024-07-12)
+
+
+### Features
+
+* add lazy loading for images ([8d75ea1](https://github.com/j-mcgregor/bun-express/commit/8d75ea157da78278dab1cc35f2df4767998f38fc))
+
 # [1.7.0](https://github.com/j-mcgregor/bun-express/compare/v1.6.0...v1.7.0) (2024-07-11)
 
 
