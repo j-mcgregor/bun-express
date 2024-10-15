@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/j-mcgregor/bun-express/compare/v1.9.0...v1.10.0) (2024-07-12)
+
+
+### Features
+
+* remove unnecessary line in release.yml ([b2b89da](https://github.com/j-mcgregor/bun-express/commit/b2b89da45944bf3aaad7f1d410216a157ab6a4b1))
+
 # [1.9.0](https://github.com/j-mcgregor/bun-express/compare/v1.8.0...v1.9.0) (2024-07-12)
 
 
