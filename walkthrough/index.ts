@@ -1,7 +1,6 @@
 import type { Server } from "bun";
 import { pathToRegexp, match } from "path-to-regexp";
 
-// bump
 export type IHandler = (
   req: Request,
   server: Server,
@@ -22,6 +21,18 @@ export interface IApp {
   server?: Server;
 }
 
+export interface IMiddlewareResponse {
+  ok: boolean;
+  status: number;
+  statusText: string;
+  data: any;
+}
+
+export type IMiddleware = (
+  req: Request,
+  server: Server
+) => Promise<IMiddlewareResponse>;
+
 export class App implements IApp {
   // Nested Map to hold all of the routes. Easy to get, set and iterate over.
   routes: Map<Request["method"], Map<string, IHandler>> = new Map();
@@ -31,6 +42,7 @@ export class App implements IApp {
   // Optional prefix for all routes
   prefix: string;
   server?: Server;
+  middleware: Map<string, IMiddleware> = new Map();
 
   // Constructor to set the port, hostname and prefix, but they're optional
   constructor({
@@ -72,6 +84,25 @@ export class App implements IApp {
             { message: "Method routes not found" },
             { status: 404 }
           );
+        }
+
+        for await (const [_name, middleware] of this.middleware) {
+          try {
+            const response = await middleware(request, server);
+
+            if (!response.ok) {
+              return Response.json(response.data, {
+                status: response.status,
+                statusText: response.statusText,
+              });
+            }
+          } catch (error) {
+            if (error instanceof Response) {
+              return error;
+            }
+
+            return Response.json({ message: String(error) }, { status: 500 });
+          }
         }
 
         // Iterate over all the routes for the method
@@ -134,6 +165,12 @@ export class App implements IApp {
       routes.forEach((handler, route) => {
         console.log(`-- ${route}`);
       });
+    });
+  }
+
+  printMiddleware() {
+    this.middleware.forEach((_middleware, name) => {
+      console.log(`Middleware: ${name}`);
     });
   }
 
@@ -213,5 +250,66 @@ export class App implements IApp {
    */
   delete(path: AddMethodProps["path"], handler: IHandler) {
     this.addMethod({ method: "DELETE", path, handler });
+  }
+
+  /**
+   * Add a USE route
+   * @param {AddMethodProps} props - The {method, path, handler} for the route
+   */
+  use(props: AddMethodProps) {
+    const { method, path, handler } = props;
+
+    if (!path) {
+      return new Error("Path is required");
+    }
+
+    if (!handler?.length) {
+      return new Error("Handler is required");
+    }
+
+    if (method) {
+      // if method, path and handler, add the handler to the route
+      this.addMethod({ method, path, handler });
+      return;
+    }
+
+    // if no method, apply the handler to all routes with the path
+    if (!method) {
+      this.routes.forEach((route) => {
+        if (this.prefix) {
+          route.set(`${this.prefix}${path}`, handler);
+        } else {
+          route.set(path, handler);
+        }
+      });
+      return;
+    }
+
+    // get the routes
+    this.routes.forEach((value) => {
+      console.log(value);
+      // get the routes
+      value.forEach((handler, _path) => {
+        // check if the path matches
+        if (path === _path) {
+          // set the handler
+          if (this.prefix) {
+            value.set(`${this.prefix}${path}`, handler);
+          } else {
+            value.set(path, handler);
+          }
+        }
+      });
+    });
+  }
+
+  /**
+   * Add a middleware
+   * @param {IMiddleware} middleware - The middleware to add
+   */
+  setMiddleware(middleware: IMiddleware[]) {
+    middleware.forEach((fn) => {
+      this.middleware.set(fn.name, fn);
+    });
   }
 }

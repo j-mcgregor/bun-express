@@ -224,38 +224,55 @@ export class App {
     this.routes.set(method, METHOD);
   }
 
+  /**
+   * Add a USE route
+   * @param {AddMethodProps} props - The {method, path, handler} for the route
+   */
   use(props: AddMethodProps) {
     const { method, path, handler } = props;
 
-    if (!handler?.length) {
-      return;
+    if (!path) {
+      return new Error("Path is required");
     }
 
-    if (method && path) {
+    if (!handler?.length) {
+      return new Error("Handler is required");
+    }
+
+    if (method) {
       // if method, path and handler, add the handler to the route
       this.addMethod({ method, path, handler });
       return;
     }
 
-    if (path) {
-      // if no method, apply the handler to all routes with the path
-
-      // get the routes
-      this.routes.forEach((value) => {
-        // get the routes
-        value.forEach((handler, _path) => {
-          // check if the path matches
-          if (path === _path) {
-            // set the handler
-            if (this.prefix) {
-              value.set(`${this.prefix}${path}`, handler);
-            } else {
-              value.set(path, handler);
-            }
-          }
-        });
+    // if no method, apply the handler to all routes with the path
+    if (!method) {
+      this.routes.forEach((route) => {
+        if (this.prefix) {
+          route.set(`${this.prefix}${path}`, handler);
+        } else {
+          route.set(path, handler);
+        }
       });
+      return;
     }
+
+    // get the routes
+    this.routes.forEach((value) => {
+      console.log(value);
+      // get the routes
+      value.forEach((handler, _path) => {
+        // check if the path matches
+        if (path === _path) {
+          // set the handler
+          if (this.prefix) {
+            value.set(`${this.prefix}${path}`, handler);
+          } else {
+            value.set(path, handler);
+          }
+        }
+      });
+    });
   }
 
   setMiddleware(middleware: IMiddleware[]) {
@@ -270,6 +287,12 @@ export class App {
       routes.forEach((_handler, route) => {
         console.log(`${method} ${route}`);
       });
+    });
+  }
+
+  printMiddleware() {
+    this.middleware.forEach((_middleware, name) => {
+      console.log(`Middleware: ${name}`);
     });
   }
 }
